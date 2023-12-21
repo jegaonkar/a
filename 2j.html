@@ -1,1323 +1,963 @@
+//1. Write a program to demonstrate method overloading.
+public class Add {
+public void addOf(int firstNumber, int secondNumber) {
+System.out.println("Addition: " + firstNumber + " + " +
+secondNumber + " = " + (firstNumber + secondNumber));
+}
+public void addOf(int firstNumber, int secondNumber, int
+thirdNumber) {
+System.out.println("Addition: " + firstNumber + " + " +
+secondNumber + " + " + thirdNumber + " = " + (firstNumber +
+secondNumber + thirdNumber));
+}
+public void addOf(int firstNumber, float secondNumber) {
+System.out.println("Addition: " + firstNumber + " + " +
+secondNumber + " = " + (firstNumber + secondNumber));
+}
+public void addOf(float firstNumber, int secondNumber) {
+System.out.println("Addition: " + firstNumber + " + " +
+secondNumber + " = " + (firstNumber + secondNumber));
+}
+public static void main(String[] args) {
+var add = new Add();
+add.addOf(7, 10);
+add.addOf(12, 13, 25);
+add.addOf(1.2F, 5);
+add.addOf(10, 13.2F);
+}
+}
+ 
+//2. Write a program to demonstrate constructor overloading.
+public class GetNumber {
+public GetNumber() {
+System.out.println("No number is given.");
+}
+public GetNumber(int number) {
+System.out.println("Number: " + number);
+}
+public GetNumber(float number) {
+System.out.println("Number: " + number);
+}
+public GetNumber(int firstNumber, int secondNumber) {
+System.out.println("First Number: " + firstNumber + ",
+Second Number: " + secondNumber);
+}
+public static void main(String[] args) {
+var getNumber1 = new GetNumber();
+var getNumber2 = new GetNumber(12);
+var getNumber3 = new GetNumber(15, 24);
+var getNumber4 = new GetNumber(4.5F);
+}
+}
+ 
+ 
+ 
+//3. Write a program to find factorial of a number using recursion.
+public class Factorial {
+public long factorialOf(int number) {
+if (number >= 1)
+return number * factorialOf(number - 1);
+else
+return 1;
+}
+public static void main(String[] args) {
+var factorial = new Factorial();
+System.out.println("Factorial of 5 is " +
+factorial.factorialOf(5));
+}
+}
+ 
+ 
+//4. Write a program to demonstrate shallow and deep cloning.
+//Shallow Cloning
+public class A {
+private int a = 5;
+public static void main(String[] args) {
+var a1 = new A();
+var a2 = a1;
+System.out.println("Before changing a's value >");
+System.out.println("In a1 object: " + a1.a);
+System.out.println("In a2 object: " + a2.a);
+a2.a = 7;
+System.out.println("After changing a's value through a2
+object >");
+System.out.println("In a1 object: " + a1.a);
+System.out.println("In a2 object: " + a2.a);
+}
+}
+ 
+ 
+//Deep Cloning
+public class B {
+private int b;
+public static void main(String[] args) {
+var b1 = new B();
+b1.b = 9;
+var b2 = new B();
+b2.b = b1.b;
+System.out.println("Before changing b's value >");
+System.out.println("In b1 object: " + b1.b);
+System.out.println("In b2 object: " + b2.b);
+b2.b = 5;
+System.out.println("After changing b's value through b2
+object >");
+System.out.println("In b1 object: " + b1.b);
+System.out.println("In b2 object: " + b2.b);
+}
+}
+ 
+//5. Write a program to count number of objects created for a class.
+public class CountObjects {
+private static int numberOfObjects;
+{
+numberOfObjects++;
+}
+public CountObjects() {
+}
+public CountObjects(int number) {
+}
+public CountObjects(String message) {
+}
+public static void main(String[] args) {
+var obj1 = new CountObjects();
+var obj2 = new CountObjects(2);
+var obj3 = new CountObjects("Hello");
+System.out.println("Number of Objects created for this
+Class: " + numberOfObjects);
+}
+}
+ 
+ 
+//6. Write a program to implement the concept of passing and
+//returning an object.
+public class EqualObjects {
+private int a;
+private int b;
+public EqualObjects(int a, int b) {
+this.a = a;
+this.b = b;
+}
+public boolean equalTo(EqualObjects e) {
+return (a == e.a && b == e.b);
+}
+public static void main(String[] args) {
+var obj1 = new EqualObjects(10, 34);
+var obj2 = new EqualObjects(57, 34);
+var obj3 = new EqualObjects(10, 34);
+System.out.println("obj1 is equal to obj2: " +
+obj1.equalTo(obj2));
+System.out.println("obj1 is equal to obj3: " +
+obj1.equalTo(obj3));
+}
+}
+ 
+//7. Write a program to demonstrate hierarchical inheritance.
+public class Vehicle {
+public Vehicle() {
+System.out.println("This is a Vehicle.");
+}
+}
+public class Car extends Vehicle {
+public Car() {
+System.out.println("This is a Car.");
+}
+}
+public class Bus extends Vehicle {
+public Bus() {
+System.out.println("This is a Bus.");
+}
+}
+public class Main {
+public static void main(String[] args) {
+var vehicle = new Vehicle();
+var car = new Car();
+var bus = new Bus();
+}
+}
+ 
+ 
+//8. Write a program for constructor calling in multi-level
+//inheritance.
+public class GrandFather {
+public GrandFather() {
+System.out.println("I am a Grand Father.");
+}
+}
+public class Father extends GrandFather {
+public Father() {
+System.out.println("I am a Father.");
+}
+}
+public class Child extends Father {
+public Child() {
+System.out.println("I am a Child.");
+}
+}
+public class Main {
+public static void main(String[] args) {
+var grandFather = new GrandFather();
+var father = new Father();
+var child = new Child();
+}
+}
+ 
+ 
+//9. Write a program to use ‘this’ and ‘super’ in inherited class.
+public class Animal {
+String name = "";
+public Animal(String name) {
+this.name = name;
+}
+public void printName() {
+System.out.println("This is an animal named " + name);
+}
+}
+public class Dog extends Animal {
+String name;
+public Dog(String name) {
+super("Dog");
+this.name = name;
+}
+public void printName() {
+System.out.println("This is a Dog named " + name);
+}
+}
+public class Main {
+public static void main(String[] args) {
+var animal = new Animal("Dog");
+animal.printName();
+var dog = new Dog("Bravo");
+dog.printName();
+}
+}
+ 
+ 
+//10. Write a program to access super class in overridden method of
+//inherited class.
+public class Parent {
+protected String firstName = "";
+protected static final String lastName = "Pawar";
+public Parent(String name) {
+this.firstName = name;
+}
+public void printName(String lastName) {
+System.out.println("I am a Parent named " + firstName + " "
++ lastName + ".");
+}
+}
+ 
+public class Child extends Parent {
+String firstName = "";
+public Child(String firstName) {
+super("Ramchandra");
+this.firstName = firstName;
+}
+public void printName(String lastName) {
+System.out.println("I am a Child named " + firstName + " "
++ super.firstName + " " + lastName + ".");
+}
+}
+public class Main {
+public static void main(String[] args) {
+var parent = new Parent("Ramchandra");
+parent.printName("Pawar");
+var child = new Child("Shivam");
+child.printName("Pawar");
+}
+}
+ 
+//11. Create two classes Car and BMW. BMW class extends Car class and
+//overrides its player method. Demonstrate runtime polymorphism.
+public class Car {
+public void startEngine() {
+System.out.println("Car Engine Started ..");
+}
+}
+public class BMW extends Car {
+public void startEngine() {
+System.out.println("BMW Engine Started ..");
+}
+}
+public class Main {
+public static void main(String[] args) {
+var car = new Car();
+car.startEngine();
+var bmw = new BMW();
+bmw.startEngine();
+}
+}
+ 
+ 
+//12. Write a program to demonstrate compile time polymorphism with
+//the help of method overloading and operator overloading.
+Method Overloading
+public class Add {
+public void addOf(int firstNumber, int secondNumber) {
+System.out.println("Addition: " + firstNumber + " + " +
+secondNumber + " = " + (firstNumber + secondNumber));
+}
+public void addOf(int firstNumber, int secondNumber, int
+thirdNumber) {
+System.out.println("Addition: " + firstNumber + " + " +
+secondNumber + " + " + thirdNumber + " = " + (firstNumber +
+secondNumber + thirdNumber));
+}
+public void addOf(int firstNumber, float secondNumber) {
+System.out.println("Addition: " + firstNumber + " + " +
+secondNumber + " = " + (firstNumber + secondNumber));
+}
+public void addOf(float firstNumber, int secondNumber) {
+System.out.println("Addition: " + firstNumber + " + " +
+secondNumber + " = " + (firstNumber + secondNumber));
+}
+public static void main(String[] args) {
+var add = new Add();
+add.addOf(7, 10);
+add.addOf(12, 13, 25);
+add.addOf(1.2F, 5);
+add.addOf(10, 13.2F);
+}
+}
+ 
+//overloading
+public class MyNumber {
+private int value;
+public MyNumber(int value) {
+this.value = value;
+}
+public MyNumber add(MyNumber other) {
+return new MyNumber(this.value + other.value);
+}
+public MyNumber subtract(MyNumber other) {
+return new MyNumber(this.value - other.value);
+}
+public MyNumber multiply(MyNumber other) {
+return new MyNumber(this.value * other.value);
+}
+public static void main(String[] args) {
+MyNumber num1 = new MyNumber(5);
+MyNumber num2 = new MyNumber(3);
+MyNumber sum = num1.add(num2);
+MyNumber difference = num1.subtract(num2);
+MyNumber product = num1.multiply(num2);
+System.out.println("Sum: " + sum.value);
+System.out.println("Difference: " + difference.value);
+System.out.println("Product: " + product.value);
+}
+}
+ 
+ 
+//14. Create a package ‘mca’ which has one class Student. Accept
+//student details through parameterized constructor. Write display
+//method to display student details. Create a main class which will
+//use package mca and calculate total marks and percentage.
+package mca;
+public class Student {
+public int id;
+public String firstName = "";
+public String lastName = "";
+public int physicsMarks;
+public int chemistryMarks;
+public int mathMarks;
+public Student(int id, String firstName, String lastName, int
+physicsMarks, int chemistryMarks, int mathMarks) {
+this.id = id;
+this.firstName = firstName;
+this.lastName = lastName;
+this.physicsMarks = physicsMarks;
+this.chemistryMarks = chemistryMarks;
+this.mathMarks = mathMarks;
+}
+public void display() {
+System.out.println("Student Details >");
+System.out.println("ID: " + id);
+System.out.println("Name: " + firstName + " " + lastName);
+System.out.println("Marks >");
+System.out.println("Physics: " + physicsMarks);
+System.out.println("Chemistry: " + chemistryMarks);
+System.out.println("Math: " + mathMarks);
+}
+}
+import mca.Student;
+public class Main {
+public static void main(String[] args) {
+final int TOTAL_MARKS = 300;
+var student = new Student(101, "Shivam", "Pawar", 58, 88,
+92);
+student.display();
+int totalMarksObtained = student.physicsMarks +
+student.chemistryMarks + student.mathMarks;
+int percentage = (totalMarksObtained * 100) / TOTAL_MARKS;
+System.out.println("Total Marks Obtained: " +
+totalMarksObtained);
+System.out.println("Percentage: " + percentage);
+}
+}
+ 
+ 
+//15. Create an interface Shape with getArea method. Create three
+//classes Rectangle, Cicle and Triangle that implement the Shape
+//interface. Implement the getArea method for each of the three
+//classes.
+public interface Shape {
+void calculateArea();
+}
+public class Rectangle implements Shape {
+private double width;
+private double height;
+public Rectangle(double width, double height) {
+this.width = width;
+this.height = height;
+}
+public void calculateArea() {
+System.out.println("Area of Rectangle: " + (width *
+height));
+}
+}
+public class Circle implements Shape {
+private double radius;
+public Circle(double radius) {
+this.radius = radius;
+}
+public void calculateArea() {
+System.out.println("Area of Circle: " + (Math.PI * radius *
+radius));
+}
+}
+public class Triangle implements Shape {
+private double base;
+private double height;
+public Triangle(double base, double height) {
+this.base = base;
+this.height = height;
+}
+public void calculateArea() {
+System.out.println("Area of Triangle: " + (0.5 * base *
+height));
+}
+}
+public class Main {
+public static void main(String[] args) {
+var rectangle = new Rectangle(5, 8);
+var circle = new Circle(4);
+var triangle = new Triangle(6, 10);
+rectangle.calculateArea();
+circle.calculateArea();
+triangle.calculateArea();
+}
+}
+ 
+ 
+//16. Write a program to create an Animal interface with a method
+//called bark that takes no arguments and returns void. Create a Dog
+//class that implements Animal and overrides bark to print “Dog is
+//barking.”
+public interface Animal {
+void makeSound();
+}
+public class Dog implements Animal {
+public void makeSound() {
+System.out.println("The dog barks.");
+}
+}
+public class Cat implements Animal {
+public void makeSound() {
+System.out.println("The cat meows.");
+}
+}
+public class Main {
+public static void main(String[] args) {
+var dog = new Dog();
+dog.makeSound();
+var cat = new Cat();
+cat.makeSound();
+}
+}
+ 
+//17. Write a program to throw an exception and catch it using a trycatch block.
+public class AgeNotValidException extends Exception {
+public AgeNotValidException() {
+super("Age can not be negative.");
+}
+}
+public class Main {
+public static void main(String[] args) {
+try {
+int age = -5;
+if (age < 0)
+throw new AgeNotValidException();
+}
+catch (AgeNotValidException e) {
+System.out.println("Age Not Valid Exception: " +
+e.getMessage());
+}
+}
+}
+ 
+//18. Write a program to demonstrate compile time and runtime
+//exceptions.
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+public class TryCatchFinally {
+public static void main(String[] args) {
+try {
+int divideByZero = 10 / 0;
+}
+catch (ArithmeticException e) {
+System.out.println("Arithmetic Exception: " +
+e.getMessage());
+}
+int[] numbers = new int[10];
+try {
+numbers[7] = Integer.parseInt("H");
+}
+catch (NumberFormatException e) {
+System.out.println("Number Format Exception: " +
+e.getMessage());
+}
+catch (ArrayIndexOutOfBoundsException e) {
+System.out.println("Array Index Out of Bounds
+Exception: " + e.getMessage());
+}
+Scanner scanner = null;
+try {
+File file = new File("Hello.txt");
+scanner = new Scanner(file);
+while (scanner.hasNextLine()) {
+String line = scanner.nextLine();
+System.out.println(line);
+}
+}
+catch (FileNotFoundException e) {
+System.out.println("File Not Found Exception: " +
+e.getMessage());
+}
+finally {
+if (scanner != null)
+scanner.close();
+}
+}
+}
+ 
+ 
+//19. Write a program to create two basic java threads that prints
+//‘User Thread’ and ‘Main Thread’ when executed.
+public class UserThread extends Thread {
+public void run() {
+System.out.println("User Thread");
+}
+}
+public class Main {
+public static void main(String[] args) {
+UserThread userThread = new UserThread();
+userThread.start();
+System.out.println("Main Thread");
+}
+}
+ 
+ 
+ 
+ 
+//20. Write a program to test if an array contains a specific value.
+public class ArrayContains {
+public static void main(String[] args) {
+int[] numbers = {12, 56, 34, 9, 16};
+int targetValue = 55;
+boolean isContains = false;
+for (int number : numbers) {
+if (number == targetValue) {
+isContains = true;
+break;
+}
+}
+if (isContains)
+System.out.println("The array contains the given value
+" + targetValue + ".");
+else
+System.out.println("The array does not contain the
+given value.");
+}
+}
+ 
+ 
+ 
+//21. Write a program to insert an element at a specific position
+//into an array.
+import java.util.Arrays;
+public class InsertElementInArray {
+public static void main(String[] args) {
+int[] originalArray = {1, 2, 3, 4, 7, 8};
+int elementToInsert = 5;
+int insertIndex = 4;
+int[] newArray = new int[originalArray.length + 1];
+for (int i = 0, j = 0; i < newArray.length; i++) {
+if (i == insertIndex)
+newArray[i] = elementToInsert;
+else {
+newArray[i] = originalArray[j];
+j++;
+}
+}
+System.out.println("Original Array: " +
+Arrays.toString(originalArray));
+System.out.println("Element to Insert: " +
+elementToInsert);
+System.out.println("Insertion Index: " + insertIndex);
+System.out.println("Array after Insertion: " +
+Arrays.toString(newArray));
+}
+}
+ 
+ 
+//22. Write a program to find the maximum and minimum value of an
+//array.
+import java.util.Arrays;
+public class FindMinMaxInArray {
+public static void main(String[] args) {
+int[] numbers = {12, 56, 56, 9, 77};
+int min = numbers[0];
+int max = numbers[0];
+for (int i = 1; i < numbers.length; i++) {
+if (numbers[i] < min)
+min = numbers[i];
+if (numbers[i] > max)
+max = numbers[i];
+}
+System.out.println("Given Array of Numbers: " +
+Arrays.toString(numbers));
+System.out.println("Minimum Value: " + min);
+System.out.println("Maximum Value: " + max);
+}
+}
+ 
+ 
+//23. Write a program to compare two strings lexicographically.
+public class StringComparison {
+public static void main(String[] args) {
+String string1 = "Apple";
+String string2 = "Banana";
+int result = string1.compareTo(string2);
+if (result < 0)
+System.out.println("String 1 comes before String 2
+lexicographically.");
+else if (result > 0)
+System.out.println("String 2 comes before String 1
+lexicographically.");
+else
+System.out.println("String 1 and String 2 are
+lexicographically Equal.");
+String string3 = "hello";
+String string4 = "Hello";
+int resultIgnoreCase =
+string3.compareToIgnoreCase(string4);
+if (resultIgnoreCase < 0)
+System.out.println("String 3 comes before String 4
+lexicographically (case-insensitive).");
+else if (resultIgnoreCase > 0)
+System.out.println("String 4 comes before String 3
+lexicographically (case-insensitive).");
+else
+System.out.println("String 3 and String 4 are
+lexicographically Equal (case-insensitive).");
+}
+}
+ 
+ 
+//24. Write a program to concatenate a given string to the end of
+//another string.
+public class ConcatenateStrings {
+public static void main(String[] args) {
+String string1 = "Hello, ";
+String string2 = "World!";
+String resultUsingPlus = string1 + string2;
+String resultUsingConcat = string1.concat(string2);
+System.out.println("Using + Operator: " + resultUsingPlus);
+System.out.println("Using Concat Method: " +
+resultUsingConcat);
+}
+}
+ 
+ 
+//25. Create an GUI application called Counter. Each time count
+//button is clicked, the counter value shall increase by 1.
+import java.awt.*;
+import java.awt.event.*;
+public class Counter {
+public void createCounter() {
+Frame frame = new Frame("Counter");
+frame.setSize(300, 150);
+frame.setLayout(new FlowLayout());
+frame.setVisible(true);
+Label label = new Label("Counter");
+TextField textField = new TextField("0", 5);
+textField.setEditable(false);
+Button button = new Button("Count");
+frame.add(label);
+frame.add(textField);
+frame.add(button);
+button.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+int count = Integer.parseInt(textField.getText());
+textField.setText(Integer.toString(++count));
+}
+});
+frame.addWindowListener(new WindowAdapter() {
+public void windowClosing(WindowEvent e) {
+System.exit(0);
+}
+});
+}
+public static void main(String[] args) {
+Counter counter = new Counter();
+counter.createCounter();
+}
+}
+ 
+//26. Create a database with name ‘books_db’, should have a table
+//‘books’ with fields like ID, Name, Author and Price.
+import java.sql.*;
+public class BooksDatabase {
+public static void main(String[] args) {
+try {
+Connection connection =
+DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db",
+"root", "Rohit@123");
+PreparedStatement createTable =
+connection.prepareStatement("CREATE TABLE books (ID int
+AUTO_INCREMENT PRIMARY KEY, Name varchar(30) NOT NULL, Author
+varchar(30) NOT NULL, Price int NOT NULL);");
+createTable.executeUpdate();
+PreparedStatement insertRecord1 =
+connection.prepareStatement("INSERT INTO books (Name, Author,
+Price) VALUES ('Book1', 'Author1', 500);");
+insertRecord1.executeUpdate();
+PreparedStatement insertRecord2 =
+connection.prepareStatement("INSERT INTO books (Name, Author,
+Price) VALUES (?, ?, ?);");
+insertRecord2.setString(1, "Book2");
+insertRecord2.setString(2, "Author2");
+insertRecord2.setInt(3, 300);
+insertRecord2.executeUpdate();
+Statement insertRecord3 = connection.createStatement();
+insertRecord3.executeUpdate("INSERT INTO books (Name,
+Author, Price) VALUES ('Book3', 'Author3', 250);");
+insertRecord3.executeUpdate("INSERT INTO books (Name,
+Author, Price) VALUES ('Book4', 'Author4', 700);");
+System.out.println("Before deleting and updating a
+record:");
+PreparedStatement selectRecords1 =
+connection.prepareStatement("SELECT * FROM books");
+ResultSet booksRecords1 =
+selectRecords1.executeQuery();
+System.out.println("ID\tName\tAuthor\tPrice");
+while (booksRecords1.next()) {
+System.out.println(booksRecords1.getInt("ID") +
+"\t" + booksRecords1.getString("Name") + "\t" +
+booksRecords1.getString("Author") + "\t" +
+booksRecords1.getInt("Price"));
+}
+PreparedStatement deleteRecord =
+connection.prepareStatement("DELETE FROM books WHERE ID = 3;");
+deleteRecord.executeUpdate();
+PreparedStatement updateRecord =
+connection.prepareStatement("UPDATE books SET Name = 'Book', Author
+= 'Author', Price = 0 WHERE ID = 1;");
+updateRecord.executeUpdate();
+System.out.println("After deleting and updating a
+record:");
+PreparedStatement selectRecords2 =
+connection.prepareStatement("SELECT * FROM books;");
+ResultSet booksRecords2 =
+selectRecords2.executeQuery();
+System.out.println("ID\tName\tAuthor\tPrice");
+while (booksRecords2.next()) {
+System.out.println(booksRecords2.getInt(1) + "\t" +
+booksRecords2.getString(2) + "\t" + booksRecords2.getString(3) +
+"\t" + booksRecords2.getInt(4));
+}
+}
+catch (SQLException e) {
+e.printStackTrace();
+}
+}
+}
+ 
+ 
+//27. Create a webpage using servlet, that takes two numbers as input
+//from the user and displays which number is greater.
+//Greater.html
 <!DOCTYPE html>
-<!-- saved from url=(0029)https://pastebin.com/qLBTgqCA -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=5.0, user-scalable=yes">
-        <script async="" src="./java_files/js"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', "G-S72LBY47R8");
-    </script>
-    
-    <title>//1. Write a program to demonstrate method overloading.public class Add { pu - Pastebin.com</title>
-    <link rel="shortcut icon" href="https://pastebin.com/favicon.ico">
-    <meta name="description" content="Pastebin.com is the number one paste tool since 2002. Pastebin is a website where you can store text online for a set period of time.">
-    <meta property="og:description" content="Pastebin.com is the number one paste tool since 2002. Pastebin is a website where you can store text online for a set period of time.">
-            <meta property="fb:app_id" content="231493360234820">
-    <meta property="og:title" content="//1. Write a program to demonstrate method overloading.public class Add { pu - Pastebin.com">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://pastebin.com/qLBTgqCA">
-    <meta property="og:image" content="https://pastebin.com/i/facebook.png">
-    <meta property="og:site_name" content="Pastebin">
-    <meta name="google-site-verification" content="jkUAIOE8owUXu8UXIhRLB9oHJsWBfOgJbZzncqHoF4A">
-    <link rel="canonical" href="https://pastebin.com/qLBTgqCA">
-        <meta name="csrf-param" content="_csrf-frontend">
-<meta name="csrf-token" content="9nC7IQniNJSupXhb5qB7Bk0Mm1bs4ECvMSTfz5IZEOKDE9huWrp_zZzdFxqO7Q5IdDTaMKfZI_sBcuaqxFV9lQ==">
-
-<link href="./java_files/bootstrap.min.css" rel="stylesheet">
-<link href="./java_files/bootstrap-tagsinput.css" rel="stylesheet">        
-<link href="./java_files/vendors.bundle.css" rel="stylesheet">
-<link href="./java_files/app.bundle.css" rel="stylesheet">
-    
-<!-- 0-x2xy94pJ -->
-<script type="text/javascript" src="./java_files/saved_resource" defer="" async=""></script><script> var vitag = vitag || {};</script>
-<!-- End Valueimpression Head Script -->
-<script>
-     vitag.smartBannerConfig= {
-          disablePosition:  "top right left",
-     }
-</script>
-<script type="text/javascript">
-        if (window.location.pathname === "/") {
-            vitag = vitag || {};
-            vitag.outStreamConfig = vitag.outStreamConfig || {};
-            vitag.outStreamConfig.enablePC = false;
-        }
-    </script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Greater</title>
 </head>
-<body class="night-auto " data-pr="x2xy94pJ" data-pa="" data-sar="1" data-abd="1" data-bd="1">
-
-
-<svg style="height: 0; width: 0; position: absolute; visibility: hidden" xmlns="http://www.w3.org/2000/svg">
-    <symbol id="add" viewBox="0 0 1024 1024"><path fill="#ccc" d="M512 16C238 16 16 238 16 512s222 496 496 496 496-222 496-496S786 16 512 16z m288 552c0 13.2-10.8 24-24 24h-184v184c0 13.2-10.8 24-24 24h-112c-13.2 0-24-10.8-24-24v-184h-184c-13.2 0-24-10.8-24-24v-112c0-13.2 10.8-24 24-24h184v-184c0-13.2 10.8-24 24-24h112c13.2 0 24 10.8 24 24v184h184c13.2 0 24 10.8 24 24v112z"></path></symbol>
-    <symbol id="search" viewBox="0 0 512 512"><path fill="#ccc" d="M354.2,216c0-38.2-13-70.7-40-97.7c-27-27-59.6-40-97.7-40s-70.7,13-97.7,40s-40,59.6-40,97.7 s13,70.7,40,97.7s59.6,40,97.7,40s70.7-13,97.7-40C340.2,285.8,354.2,253.2,354.2,216z M511.5,472c0,10.2-3.7,19.5-12.1,27.9 c-8.4,8.4-16.8,12.1-27.9,12.1c-11.2,0-20.5-3.7-27.9-12.1L339.3,393.8c-37.2,26.1-78.2,38.2-122.9,38.2 c-29.8,0-57.7-5.6-83.8-16.8c-27-11.2-50.3-27-68.9-46.5s-34.4-42.8-46.5-68.9C6.1,272.8,0.5,244.8,0.5,216s5.6-57.7,16.8-83.8 c11.2-27,27-50.3,46.5-68.9s42.8-34.4,68.9-46.5C159.7,5.6,187.6,0,216.4,0s57.7,5.6,83.8,16.8c27,11.2,50.3,27,68.9,46.5 c18.6,19.5,34.4,42.8,46.5,68.9c11.2,27,16.8,54.9,16.8,83.8c0,44.7-13,85.6-38.2,122.9L499.4,444 C507.8,451.5,511.5,460.8,511.5,472z"></path></symbol>
-</svg>
-<div class="wrap">
-
-        
-        
-<div class="header">
-    <div class="container">
-        <div class="header__container">
-
-                        <div class="header__left">
-                <a class="header__logo" href="https://pastebin.com/">
-                    Pastebin                </a>
-
-                <div class="header__links h_1024">
-                    
-                                        <a href="https://pastebin.com/doc_api">API</a>
-                    <a href="https://pastebin.com/tools">tools</a>
-                    <a href="https://pastebin.com/faq">faq</a>
-                                    </div>
-
-                <a class="header__btn" href="https://pastebin.com/">
-                    <span>paste</span>
-                </a>
-
-                
-                <div class="header__search">
-                                            <form id="w0" class="search_form" action="https://pastebin.com/search" method="get">
-                            
-<input type="text" id="q" class="search_input" name="q" maxlength="128" placeholder="Search...">
-
-
-
-                            <button type="submit" class="search_btn" aria-label="Search"><svg class="icon search"><use xlink:href="#search"></use></svg></button>
-                        </form>                                    </div>
-
-            </div>
-
-                        <div class="header__right">
-
-                                    <div class="header_sign">
-                        <a href="https://pastebin.com/login" class="btn-sign sign-in">Login</a>
-                        <a href="https://pastebin.com/signup" class="btn-sign sign-up">Sign up</a>
-                    </div>
-                
-            </div>
-
-        </div>
-    </div>
-
-</div>
-        
-
-    <div class="container">
-        <div class="content">
-
-                        
-                        
-<!-- 0-x2xy94pJ -->
-<div style="padding-bottom:30px; padding-top:5px;width:998px;height:290px;">
-<div style="color: #999; font-size: 12px; text-align: center;">Advertisement</div>
-<div class="adsbyvli" data-ad-slot="vi_1282550010"></div><script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_1282550010")})</script>
-</div>
-
-                                    
-            
-            
-<link href="./java_files/text.css" rel="stylesheet">
-
-<div class="post-view js-post-view">
-
-    <div class="error-summary js-rating-error hide"><ul><li></li></ul></div>
-
-    
-    <div class="details">
-                    <div class="share h_800">
-                <div data-url="https://pastebin.com/qLBTgqCA" class="share-btn facebook js-facebook-share" title="Share on Facebook!"><span>SHARE</span></div>
-                <div data-url="https://pastebin.com/qLBTgqCA" class="share-btn twitter js-twitter-share" title="Share on Twitter!"><span>TWEET</span></div>
-            </div>
-                <div class="user-icon">
-                            <img src="./java_files/guest.png" alt="Guest User">                    </div>
-        <div class="info-bar">
-            <div class="info-top">
-
-                
-                
-                                    <h1>Untitled</h1>
-                            </div>
-            <div class="info-bottom">
-
-                                    <div class="username">
-                        a guest                    </div>
-                
-                <div class="date">
-                    <span title="Thursday 23rd of November 2023 11:21:00 AM CDT">Nov 23rd, 2023</span>
-
-                                    </div>
-
-                <div class="visits" title="Unique visits to this paste">
-                    34                </div>
-
-                                    <div class="rating js-post-rating" data-key="qLBTgqCA" title="Rating">
-                        0                    </div>
-                
-                <div class="expire" title="When this paste gets automatically deleted">
-                    Never                </div>
-
-                                    <div class="comments-info" title="Comments">
-
-                        
-                                                            <a href="https://pastebin.com/login?return_url=%2FqLBTgqCA%23add_comment">Add comment</a>                            
-                                            </div>
-                            </div>
-        </div>
-    </div>
-
-    
-    
-                        <div class="page">
-                <div class="content__text -no-padding">
-                    <div class="notice -post-view">
-                        <b>Not a member of Pastebin yet?</b>
-                        <a href="https://pastebin.com/signup"><b><u>Sign Up</u></b></a>,
-                        it unlocks many cool features!                    </div>
-                </div>
-            </div>
-        
-    
-    <div class="highlighted-code">
-        <div class="top-buttons">
-            <div class="left">
-                <a href="https://pastebin.com/archive/text" class="btn -small h_800">text</a> 26.15 KB
-                                    <span title="Category">
-                        | None                    </span>
-                
-                                        |
-    <a class="btn -small -like" href="https://pastebin.com/login?return_url=%2FqLBTgqCA" title="Like" data-rating="1" data-key="qLBTgqCA">0</a>    <a class="btn -small -dislike" href="https://pastebin.com/login?return_url=%2FqLBTgqCA" title="Dislike" data-rating="-1" data-key="qLBTgqCA">0</a>                            </div>
-
-            <div class="right">
-                
-                                    <a href="https://pastebin.com/raw/qLBTgqCA" class="btn -small">raw</a>
-                    <a href="https://pastebin.com/dl/qLBTgqCA" class="btn -small">download</a>
-                    <a href="https://pastebin.com/clone/qLBTgqCA" class="btn -small h_800">clone</a>
-                    <a href="https://pastebin.com/embed/qLBTgqCA" class="btn -small h_800">embed</a>
-                    <a href="https://pastebin.com/print/qLBTgqCA" class="btn -small h_800">print</a>
-                
-                                    <a href="https://pastebin.com/report/qLBTgqCA" class="btn -small">report</a>
-                
-                
-                            </div>
-        </div>
-        <div class="source text" style="font-size: px; line-height: px;">
-            <ol class="text"><li class="li1"><div class="de1">//1. Write a program to demonstrate method overloading.
-</div></li><li class="li1"><div class="de1">public class Add {
-</div></li><li class="li1"><div class="de1"> public void addOf(int firstNumber, int secondNumber) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Addition: " + firstNumber + " + " +
-</div></li><li class="li1"><div class="de1">secondNumber + " = " + (firstNumber + secondNumber));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void addOf(int firstNumber, int secondNumber, int
-</div></li><li class="li1"><div class="de1">thirdNumber) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Addition: " + firstNumber + " + " +
-</div></li><li class="li1"><div class="de1">secondNumber + " + " + thirdNumber + " = " + (firstNumber +
-</div></li><li class="li1"><div class="de1">secondNumber + thirdNumber));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void addOf(int firstNumber, float secondNumber) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Addition: " + firstNumber + " + " +
-</div></li><li class="li1"><div class="de1">secondNumber + " = " + (firstNumber + secondNumber));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void addOf(float firstNumber, int secondNumber) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Addition: " + firstNumber + " + " +
-</div></li><li class="li1"><div class="de1">secondNumber + " = " + (firstNumber + secondNumber));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var add = new Add();
-</div></li><li class="li1"><div class="de1"> add.addOf(7, 10);
-</div></li><li class="li1"><div class="de1"> add.addOf(12, 13, 25);
-</div></li><li class="li1"><div class="de1"> add.addOf(1.2F, 5);
-</div></li><li class="li1"><div class="de1"> add.addOf(10, 13.2F);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//2. Write a program to demonstrate constructor overloading.
-</div></li><li class="li1"><div class="de1">public class GetNumber {
-</div></li><li class="li1"><div class="de1"> public GetNumber() {
-</div></li><li class="li1"><div class="de1"> System.out.println("No number is given.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public GetNumber(int number) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Number: " + number);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public GetNumber(float number) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Number: " + number);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public GetNumber(int firstNumber, int secondNumber) {
-</div></li><li class="li1"><div class="de1"> System.out.println("First Number: " + firstNumber + ",
-</div></li><li class="li1"><div class="de1">Second Number: " + secondNumber);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var getNumber1 = new GetNumber();
-</div></li><li class="li1"><div class="de1"> var getNumber2 = new GetNumber(12);
-</div></li><li class="li1"><div class="de1"> var getNumber3 = new GetNumber(15, 24);
-</div></li><li class="li1"><div class="de1"> var getNumber4 = new GetNumber(4.5F);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//3. Write a program to find factorial of a number using recursion.
-</div></li><li class="li1"><div class="de1">public class Factorial {
-</div></li><li class="li1"><div class="de1"> public long factorialOf(int number) {
-</div></li><li class="li1"><div class="de1"> if (number &gt;= 1)
-</div></li><li class="li1"><div class="de1"> return number * factorialOf(number - 1);
-</div></li><li class="li1"><div class="de1"> else
-</div></li><li class="li1"><div class="de1"> return 1;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var factorial = new Factorial();
-</div></li><li class="li1"><div class="de1"> System.out.println("Factorial of 5 is " +
-</div></li><li class="li1"><div class="de1">factorial.factorialOf(5));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//4. Write a program to demonstrate shallow and deep cloning.
-</div></li><li class="li1"><div class="de1">//Shallow Cloning
-</div></li><li class="li1"><div class="de1">public class A {
-</div></li><li class="li1"><div class="de1"> private int a = 5;
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var a1 = new A();
-</div></li><li class="li1"><div class="de1"> var a2 = a1;
-</div></li><li class="li1"><div class="de1"> System.out.println("Before changing a's value &gt;");
-</div></li><li class="li1"><div class="de1"> System.out.println("In a1 object: " + a1.a);
-</div></li><li class="li1"><div class="de1"> System.out.println("In a2 object: " + a2.a);
-</div></li><li class="li1"><div class="de1"> a2.a = 7;
-</div></li><li class="li1"><div class="de1"> System.out.println("After changing a's value through a2
-</div></li><li class="li1"><div class="de1">object &gt;");
-</div></li><li class="li1"><div class="de1"> System.out.println("In a1 object: " + a1.a);
-</div></li><li class="li1"><div class="de1"> System.out.println("In a2 object: " + a2.a);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//Deep Cloning
-</div></li><li class="li1"><div class="de1">public class B {
-</div></li><li class="li1"><div class="de1"> private int b;
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var b1 = new B();
-</div></li><li class="li1"><div class="de1"> b1.b = 9;
-</div></li><li class="li1"><div class="de1"> var b2 = new B();
-</div></li><li class="li1"><div class="de1"> b2.b = b1.b;
-</div></li><li class="li1"><div class="de1"> System.out.println("Before changing b's value &gt;");
-</div></li><li class="li1"><div class="de1"> System.out.println("In b1 object: " + b1.b);
-</div></li><li class="li1"><div class="de1"> System.out.println("In b2 object: " + b2.b);
-</div></li><li class="li1"><div class="de1"> b2.b = 5;
-</div></li><li class="li1"><div class="de1"> System.out.println("After changing b's value through b2
-</div></li><li class="li1"><div class="de1">object &gt;");
-</div></li><li class="li1"><div class="de1"> System.out.println("In b1 object: " + b1.b);
-</div></li><li class="li1"><div class="de1"> System.out.println("In b2 object: " + b2.b);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//5. Write a program to count number of objects created for a class.
-</div></li><li class="li1"><div class="de1">public class CountObjects {
-</div></li><li class="li1"><div class="de1"> private static int numberOfObjects;
-</div></li><li class="li1"><div class="de1"> {
-</div></li><li class="li1"><div class="de1"> numberOfObjects++;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public CountObjects() {
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public CountObjects(int number) {
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public CountObjects(String message) {
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var obj1 = new CountObjects();
-</div></li><li class="li1"><div class="de1"> var obj2 = new CountObjects(2);
-</div></li><li class="li1"><div class="de1"> var obj3 = new CountObjects("Hello");
-</div></li><li class="li1"><div class="de1"> System.out.println("Number of Objects created for this
-</div></li><li class="li1"><div class="de1">Class: " + numberOfObjects);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//6. Write a program to implement the concept of passing and
-</div></li><li class="li1"><div class="de1">//returning an object.
-</div></li><li class="li1"><div class="de1">public class EqualObjects {
-</div></li><li class="li1"><div class="de1"> private int a;
-</div></li><li class="li1"><div class="de1"> private int b;
-</div></li><li class="li1"><div class="de1"> public EqualObjects(int a, int b) {
-</div></li><li class="li1"><div class="de1"> this.a = a;
-</div></li><li class="li1"><div class="de1"> this.b = b;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public boolean equalTo(EqualObjects e) {
-</div></li><li class="li1"><div class="de1"> return (a == e.a &amp;&amp; b == e.b);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var obj1 = new EqualObjects(10, 34);
-</div></li><li class="li1"><div class="de1"> var obj2 = new EqualObjects(57, 34);
-</div></li><li class="li1"><div class="de1"> var obj3 = new EqualObjects(10, 34);
-</div></li><li class="li1"><div class="de1"> System.out.println("obj1 is equal to obj2: " +
-</div></li><li class="li1"><div class="de1">obj1.equalTo(obj2));
-</div></li><li class="li1"><div class="de1"> System.out.println("obj1 is equal to obj3: " +
-</div></li><li class="li1"><div class="de1">obj1.equalTo(obj3));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//7. Write a program to demonstrate hierarchical inheritance.
-</div></li><li class="li1"><div class="de1">public class Vehicle {
-</div></li><li class="li1"><div class="de1"> public Vehicle() {
-</div></li><li class="li1"><div class="de1"> System.out.println("This is a Vehicle.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Car extends Vehicle {
-</div></li><li class="li1"><div class="de1"> public Car() {
-</div></li><li class="li1"><div class="de1"> System.out.println("This is a Car.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Bus extends Vehicle {
-</div></li><li class="li1"><div class="de1"> public Bus() {
-</div></li><li class="li1"><div class="de1"> System.out.println("This is a Bus.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var vehicle = new Vehicle();
-</div></li><li class="li1"><div class="de1"> var car = new Car();
-</div></li><li class="li1"><div class="de1"> var bus = new Bus();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//8. Write a program for constructor calling in multi-level
-</div></li><li class="li1"><div class="de1">//inheritance.
-</div></li><li class="li1"><div class="de1">public class GrandFather {
-</div></li><li class="li1"><div class="de1"> public GrandFather() {
-</div></li><li class="li1"><div class="de1"> System.out.println("I am a Grand Father.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Father extends GrandFather {
-</div></li><li class="li1"><div class="de1"> public Father() {
-</div></li><li class="li1"><div class="de1"> System.out.println("I am a Father.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Child extends Father {
-</div></li><li class="li1"><div class="de1"> public Child() {
-</div></li><li class="li1"><div class="de1"> System.out.println("I am a Child.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var grandFather = new GrandFather();
-</div></li><li class="li1"><div class="de1"> var father = new Father();
-</div></li><li class="li1"><div class="de1"> var child = new Child();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//9. Write a program to use ‘this’ and ‘super’ in inherited class.
-</div></li><li class="li1"><div class="de1">public class Animal {
-</div></li><li class="li1"><div class="de1"> String name = "";
-</div></li><li class="li1"><div class="de1"> public Animal(String name) {
-</div></li><li class="li1"><div class="de1"> this.name = name;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void printName() {
-</div></li><li class="li1"><div class="de1"> System.out.println("This is an animal named " + name);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Dog extends Animal {
-</div></li><li class="li1"><div class="de1"> String name;
-</div></li><li class="li1"><div class="de1"> public Dog(String name) {
-</div></li><li class="li1"><div class="de1"> super("Dog");
-</div></li><li class="li1"><div class="de1"> this.name = name;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void printName() {
-</div></li><li class="li1"><div class="de1"> System.out.println("This is a Dog named " + name);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var animal = new Animal("Dog");
-</div></li><li class="li1"><div class="de1"> animal.printName();
-</div></li><li class="li1"><div class="de1"> var dog = new Dog("Bravo");
-</div></li><li class="li1"><div class="de1"> dog.printName();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//10. Write a program to access super class in overridden method of
-</div></li><li class="li1"><div class="de1">//inherited class.
-</div></li><li class="li1"><div class="de1">public class Parent {
-</div></li><li class="li1"><div class="de1"> protected String firstName = "";
-</div></li><li class="li1"><div class="de1"> protected static final String lastName = "Pawar";
-</div></li><li class="li1"><div class="de1"> public Parent(String name) {
-</div></li><li class="li1"><div class="de1"> this.firstName = name;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void printName(String lastName) {
-</div></li><li class="li1"><div class="de1"> System.out.println("I am a Parent named " + firstName + " "
-</div></li><li class="li1"><div class="de1">+ lastName + ".");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">public class Child extends Parent {
-</div></li><li class="li1"><div class="de1"> String firstName = "";
-</div></li><li class="li1"><div class="de1"> public Child(String firstName) {
-</div></li><li class="li1"><div class="de1"> super("Ramchandra");
-</div></li><li class="li1"><div class="de1"> this.firstName = firstName;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void printName(String lastName) {
-</div></li><li class="li1"><div class="de1"> System.out.println("I am a Child named " + firstName + " "
-</div></li><li class="li1"><div class="de1">+ super.firstName + " " + lastName + ".");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var parent = new Parent("Ramchandra");
-</div></li><li class="li1"><div class="de1"> parent.printName("Pawar");
-</div></li><li class="li1"><div class="de1"> var child = new Child("Shivam");
-</div></li><li class="li1"><div class="de1"> child.printName("Pawar");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//11. Create two classes Car and BMW. BMW class extends Car class and
-</div></li><li class="li1"><div class="de1">//overrides its player method. Demonstrate runtime polymorphism.
-</div></li><li class="li1"><div class="de1">public class Car {
-</div></li><li class="li1"><div class="de1"> public void startEngine() {
-</div></li><li class="li1"><div class="de1"> System.out.println("Car Engine Started ..");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class BMW extends Car {
-</div></li><li class="li1"><div class="de1"> public void startEngine() {
-</div></li><li class="li1"><div class="de1"> System.out.println("BMW Engine Started ..");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var car = new Car();
-</div></li><li class="li1"><div class="de1"> car.startEngine();
-</div></li><li class="li1"><div class="de1"> var bmw = new BMW();
-</div></li><li class="li1"><div class="de1"> bmw.startEngine();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//12. Write a program to demonstrate compile time polymorphism with
-</div></li><li class="li1"><div class="de1">//the help of method overloading and operator overloading.
-</div></li><li class="li1"><div class="de1">Method Overloading
-</div></li><li class="li1"><div class="de1">public class Add {
-</div></li><li class="li1"><div class="de1"> public void addOf(int firstNumber, int secondNumber) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Addition: " + firstNumber + " + " +
-</div></li><li class="li1"><div class="de1">secondNumber + " = " + (firstNumber + secondNumber));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void addOf(int firstNumber, int secondNumber, int
-</div></li><li class="li1"><div class="de1">thirdNumber) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Addition: " + firstNumber + " + " +
-</div></li><li class="li1"><div class="de1">secondNumber + " + " + thirdNumber + " = " + (firstNumber +
-</div></li><li class="li1"><div class="de1">secondNumber + thirdNumber));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void addOf(int firstNumber, float secondNumber) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Addition: " + firstNumber + " + " +
-</div></li><li class="li1"><div class="de1">secondNumber + " = " + (firstNumber + secondNumber));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void addOf(float firstNumber, int secondNumber) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Addition: " + firstNumber + " + " +
-</div></li><li class="li1"><div class="de1">secondNumber + " = " + (firstNumber + secondNumber));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var add = new Add();
-</div></li><li class="li1"><div class="de1"> add.addOf(7, 10);
-</div></li><li class="li1"><div class="de1"> add.addOf(12, 13, 25);
-</div></li><li class="li1"><div class="de1"> add.addOf(1.2F, 5);
-</div></li><li class="li1"><div class="de1"> add.addOf(10, 13.2F);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//overloading
-</div></li><li class="li1"><div class="de1">public class MyNumber {
-</div></li><li class="li1"><div class="de1"> private int value;
-</div></li><li class="li1"><div class="de1"> public MyNumber(int value) {
-</div></li><li class="li1"><div class="de1"> this.value = value;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public MyNumber add(MyNumber other) {
-</div></li><li class="li1"><div class="de1"> return new MyNumber(this.value + other.value);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public MyNumber subtract(MyNumber other) {
-</div></li><li class="li1"><div class="de1"> return new MyNumber(this.value - other.value);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public MyNumber multiply(MyNumber other) {
-</div></li><li class="li1"><div class="de1"> return new MyNumber(this.value * other.value);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> MyNumber num1 = new MyNumber(5);
-</div></li><li class="li1"><div class="de1"> MyNumber num2 = new MyNumber(3);
-</div></li><li class="li1"><div class="de1"> MyNumber sum = num1.add(num2);
-</div></li><li class="li1"><div class="de1"> MyNumber difference = num1.subtract(num2);
-</div></li><li class="li1"><div class="de1"> MyNumber product = num1.multiply(num2);
-</div></li><li class="li1"><div class="de1"> System.out.println("Sum: " + sum.value);
-</div></li><li class="li1"><div class="de1"> System.out.println("Difference: " + difference.value);
-</div></li><li class="li1"><div class="de1"> System.out.println("Product: " + product.value);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//14. Create a package ‘mca’ which has one class Student. Accept
-</div></li><li class="li1"><div class="de1">//student details through parameterized constructor. Write display
-</div></li><li class="li1"><div class="de1">//method to display student details. Create a main class which will
-</div></li><li class="li1"><div class="de1">//use package mca and calculate total marks and percentage.
-</div></li><li class="li1"><div class="de1">package mca;
-</div></li><li class="li1"><div class="de1">public class Student {
-</div></li><li class="li1"><div class="de1"> public int id;
-</div></li><li class="li1"><div class="de1"> public String firstName = "";
-</div></li><li class="li1"><div class="de1"> public String lastName = "";
-</div></li><li class="li1"><div class="de1"> public int physicsMarks;
-</div></li><li class="li1"><div class="de1"> public int chemistryMarks;
-</div></li><li class="li1"><div class="de1"> public int mathMarks;
-</div></li><li class="li1"><div class="de1"> public Student(int id, String firstName, String lastName, int
-</div></li><li class="li1"><div class="de1">physicsMarks, int chemistryMarks, int mathMarks) {
-</div></li><li class="li1"><div class="de1"> this.id = id;
-</div></li><li class="li1"><div class="de1"> this.firstName = firstName;
-</div></li><li class="li1"><div class="de1"> this.lastName = lastName;
-</div></li><li class="li1"><div class="de1"> this.physicsMarks = physicsMarks;
-</div></li><li class="li1"><div class="de1"> this.chemistryMarks = chemistryMarks;
-</div></li><li class="li1"><div class="de1"> this.mathMarks = mathMarks;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void display() {
-</div></li><li class="li1"><div class="de1"> System.out.println("Student Details &gt;");
-</div></li><li class="li1"><div class="de1"> System.out.println("ID: " + id);
-</div></li><li class="li1"><div class="de1"> System.out.println("Name: " + firstName + " " + lastName);
-</div></li><li class="li1"><div class="de1"> System.out.println("Marks &gt;");
-</div></li><li class="li1"><div class="de1"> System.out.println("Physics: " + physicsMarks);
-</div></li><li class="li1"><div class="de1"> System.out.println("Chemistry: " + chemistryMarks);
-</div></li><li class="li1"><div class="de1"> System.out.println("Math: " + mathMarks);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">import mca.Student;
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> final int TOTAL_MARKS = 300;
-</div></li><li class="li1"><div class="de1"> var student = new Student(101, "Shivam", "Pawar", 58, 88,
-</div></li><li class="li1"><div class="de1">92);
-</div></li><li class="li1"><div class="de1"> student.display();
-</div></li><li class="li1"><div class="de1"> int totalMarksObtained = student.physicsMarks +
-</div></li><li class="li1"><div class="de1">student.chemistryMarks + student.mathMarks;
-</div></li><li class="li1"><div class="de1"> int percentage = (totalMarksObtained * 100) / TOTAL_MARKS;
-</div></li><li class="li1"><div class="de1"> System.out.println("Total Marks Obtained: " +
-</div></li><li class="li1"><div class="de1">totalMarksObtained);
-</div></li><li class="li1"><div class="de1"> System.out.println("Percentage: " + percentage);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//15. Create an interface Shape with getArea method. Create three
-</div></li><li class="li1"><div class="de1">//classes Rectangle, Cicle and Triangle that implement the Shape
-</div></li><li class="li1"><div class="de1">//interface. Implement the getArea method for each of the three
-</div></li><li class="li1"><div class="de1">//classes.
-</div></li><li class="li1"><div class="de1">public interface Shape {
-</div></li><li class="li1"><div class="de1"> void calculateArea();
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Rectangle implements Shape {
-</div></li><li class="li1"><div class="de1"> private double width;
-</div></li><li class="li1"><div class="de1"> private double height;
-</div></li><li class="li1"><div class="de1"> public Rectangle(double width, double height) {
-</div></li><li class="li1"><div class="de1"> this.width = width;
-</div></li><li class="li1"><div class="de1"> this.height = height;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void calculateArea() {
-</div></li><li class="li1"><div class="de1"> System.out.println("Area of Rectangle: " + (width *
-</div></li><li class="li1"><div class="de1">height));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Circle implements Shape {
-</div></li><li class="li1"><div class="de1"> private double radius;
-</div></li><li class="li1"><div class="de1"> public Circle(double radius) {
-</div></li><li class="li1"><div class="de1"> this.radius = radius;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void calculateArea() {
-</div></li><li class="li1"><div class="de1"> System.out.println("Area of Circle: " + (Math.PI * radius *
-</div></li><li class="li1"><div class="de1">radius));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Triangle implements Shape {
-</div></li><li class="li1"><div class="de1"> private double base;
-</div></li><li class="li1"><div class="de1"> private double height;
-</div></li><li class="li1"><div class="de1"> public Triangle(double base, double height) {
-</div></li><li class="li1"><div class="de1"> this.base = base;
-</div></li><li class="li1"><div class="de1"> this.height = height;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public void calculateArea() {
-</div></li><li class="li1"><div class="de1"> System.out.println("Area of Triangle: " + (0.5 * base *
-</div></li><li class="li1"><div class="de1">height));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var rectangle = new Rectangle(5, 8);
-</div></li><li class="li1"><div class="de1"> var circle = new Circle(4);
-</div></li><li class="li1"><div class="de1"> var triangle = new Triangle(6, 10);
-</div></li><li class="li1"><div class="de1"> rectangle.calculateArea();
-</div></li><li class="li1"><div class="de1"> circle.calculateArea();
-</div></li><li class="li1"><div class="de1"> triangle.calculateArea();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//16. Write a program to create an Animal interface with a method
-</div></li><li class="li1"><div class="de1">//called bark that takes no arguments and returns void. Create a Dog
-</div></li><li class="li1"><div class="de1">//class that implements Animal and overrides bark to print “Dog is
-</div></li><li class="li1"><div class="de1">//barking.”
-</div></li><li class="li1"><div class="de1">public interface Animal {
-</div></li><li class="li1"><div class="de1"> void makeSound();
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Dog implements Animal {
-</div></li><li class="li1"><div class="de1"> public void makeSound() {
-</div></li><li class="li1"><div class="de1"> System.out.println("The dog barks.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Cat implements Animal {
-</div></li><li class="li1"><div class="de1"> public void makeSound() {
-</div></li><li class="li1"><div class="de1"> System.out.println("The cat meows.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> var dog = new Dog();
-</div></li><li class="li1"><div class="de1"> dog.makeSound();
-</div></li><li class="li1"><div class="de1"> var cat = new Cat();
-</div></li><li class="li1"><div class="de1"> cat.makeSound();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//17. Write a program to throw an exception and catch it using a trycatch block.
-</div></li><li class="li1"><div class="de1">public class AgeNotValidException extends Exception {
-</div></li><li class="li1"><div class="de1"> public AgeNotValidException() {
-</div></li><li class="li1"><div class="de1"> super("Age can not be negative.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> try {
-</div></li><li class="li1"><div class="de1"> int age = -5;
-</div></li><li class="li1"><div class="de1"> if (age &lt; 0)
-</div></li><li class="li1"><div class="de1"> throw new AgeNotValidException();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> catch (AgeNotValidException e) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Age Not Valid Exception: " +
-</div></li><li class="li1"><div class="de1">e.getMessage());
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//18. Write a program to demonstrate compile time and runtime
-</div></li><li class="li1"><div class="de1">//exceptions.
-</div></li><li class="li1"><div class="de1">import java.io.File;
-</div></li><li class="li1"><div class="de1">import java.io.FileNotFoundException;
-</div></li><li class="li1"><div class="de1">import java.util.Scanner;
-</div></li><li class="li1"><div class="de1">public class TryCatchFinally {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> try {
-</div></li><li class="li1"><div class="de1"> int divideByZero = 10 / 0;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> catch (ArithmeticException e) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Arithmetic Exception: " +
-</div></li><li class="li1"><div class="de1">e.getMessage());
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> int[] numbers = new int[10];
-</div></li><li class="li1"><div class="de1"> try {
-</div></li><li class="li1"><div class="de1"> numbers[7] = Integer.parseInt("H");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> catch (NumberFormatException e) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Number Format Exception: " +
-</div></li><li class="li1"><div class="de1">e.getMessage());
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> catch (ArrayIndexOutOfBoundsException e) {
-</div></li><li class="li1"><div class="de1"> System.out.println("Array Index Out of Bounds
-</div></li><li class="li1"><div class="de1">Exception: " + e.getMessage());
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> Scanner scanner = null;
-</div></li><li class="li1"><div class="de1"> try {
-</div></li><li class="li1"><div class="de1"> File file = new File("Hello.txt");
-</div></li><li class="li1"><div class="de1"> scanner = new Scanner(file);
-</div></li><li class="li1"><div class="de1"> while (scanner.hasNextLine()) {
-</div></li><li class="li1"><div class="de1"> String line = scanner.nextLine();
-</div></li><li class="li1"><div class="de1"> System.out.println(line);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> catch (FileNotFoundException e) {
-</div></li><li class="li1"><div class="de1"> System.out.println("File Not Found Exception: " +
-</div></li><li class="li1"><div class="de1">e.getMessage());
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> finally {
-</div></li><li class="li1"><div class="de1"> if (scanner != null)
-</div></li><li class="li1"><div class="de1"> scanner.close();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//19. Write a program to create two basic java threads that prints
-</div></li><li class="li1"><div class="de1">//‘User Thread’ and ‘Main Thread’ when executed.
-</div></li><li class="li1"><div class="de1">public class UserThread extends Thread {
-</div></li><li class="li1"><div class="de1"> public void run() {
-</div></li><li class="li1"><div class="de1"> System.out.println("User Thread");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">public class Main {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> UserThread userThread = new UserThread();
-</div></li><li class="li1"><div class="de1"> userThread.start();
-</div></li><li class="li1"><div class="de1"> System.out.println("Main Thread");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//20. Write a program to test if an array contains a specific value.
-</div></li><li class="li1"><div class="de1">public class ArrayContains {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> int[] numbers = {12, 56, 34, 9, 16};
-</div></li><li class="li1"><div class="de1"> int targetValue = 55;
-</div></li><li class="li1"><div class="de1"> boolean isContains = false;
-</div></li><li class="li1"><div class="de1"> for (int number : numbers) {
-</div></li><li class="li1"><div class="de1"> if (number == targetValue) {
-</div></li><li class="li1"><div class="de1"> isContains = true;
-</div></li><li class="li1"><div class="de1"> break;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> if (isContains)
-</div></li><li class="li1"><div class="de1"> System.out.println("The array contains the given value
-</div></li><li class="li1"><div class="de1">" + targetValue + ".");
-</div></li><li class="li1"><div class="de1"> else
-</div></li><li class="li1"><div class="de1"> System.out.println("The array does not contain the
-</div></li><li class="li1"><div class="de1">given value.");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//21. Write a program to insert an element at a specific position
-</div></li><li class="li1"><div class="de1">//into an array.
-</div></li><li class="li1"><div class="de1">import java.util.Arrays;
-</div></li><li class="li1"><div class="de1">public class InsertElementInArray {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> int[] originalArray = {1, 2, 3, 4, 7, 8};
-</div></li><li class="li1"><div class="de1"> int elementToInsert = 5;
-</div></li><li class="li1"><div class="de1"> int insertIndex = 4;
-</div></li><li class="li1"><div class="de1"> int[] newArray = new int[originalArray.length + 1];
-</div></li><li class="li1"><div class="de1"> for (int i = 0, j = 0; i &lt; newArray.length; i++) {
-</div></li><li class="li1"><div class="de1"> if (i == insertIndex)
-</div></li><li class="li1"><div class="de1"> newArray[i] = elementToInsert;
-</div></li><li class="li1"><div class="de1"> else {
-</div></li><li class="li1"><div class="de1"> newArray[i] = originalArray[j];
-</div></li><li class="li1"><div class="de1"> j++;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> System.out.println("Original Array: " +
-</div></li><li class="li1"><div class="de1">Arrays.toString(originalArray));
-</div></li><li class="li1"><div class="de1"> System.out.println("Element to Insert: " +
-</div></li><li class="li1"><div class="de1">elementToInsert);
-</div></li><li class="li1"><div class="de1"> System.out.println("Insertion Index: " + insertIndex);
-</div></li><li class="li1"><div class="de1"> System.out.println("Array after Insertion: " +
-</div></li><li class="li1"><div class="de1">Arrays.toString(newArray));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//22. Write a program to find the maximum and minimum value of an
-</div></li><li class="li1"><div class="de1">//array.
-</div></li><li class="li1"><div class="de1">import java.util.Arrays;
-</div></li><li class="li1"><div class="de1">public class FindMinMaxInArray {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> int[] numbers = {12, 56, 56, 9, 77};
-</div></li><li class="li1"><div class="de1"> int min = numbers[0];
-</div></li><li class="li1"><div class="de1"> int max = numbers[0];
-</div></li><li class="li1"><div class="de1"> for (int i = 1; i &lt; numbers.length; i++) {
-</div></li><li class="li1"><div class="de1"> if (numbers[i] &lt; min)
-</div></li><li class="li1"><div class="de1"> min = numbers[i];
-</div></li><li class="li1"><div class="de1"> if (numbers[i] &gt; max)
-</div></li><li class="li1"><div class="de1"> max = numbers[i];
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> System.out.println("Given Array of Numbers: " +
-</div></li><li class="li1"><div class="de1">Arrays.toString(numbers));
-</div></li><li class="li1"><div class="de1"> System.out.println("Minimum Value: " + min);
-</div></li><li class="li1"><div class="de1"> System.out.println("Maximum Value: " + max);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//23. Write a program to compare two strings lexicographically.
-</div></li><li class="li1"><div class="de1">public class StringComparison {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> String string1 = "Apple";
-</div></li><li class="li1"><div class="de1"> String string2 = "Banana";
-</div></li><li class="li1"><div class="de1"> int result = string1.compareTo(string2);
-</div></li><li class="li1"><div class="de1"> if (result &lt; 0)
-</div></li><li class="li1"><div class="de1"> System.out.println("String 1 comes before String 2
-</div></li><li class="li1"><div class="de1">lexicographically.");
-</div></li><li class="li1"><div class="de1"> else if (result &gt; 0)
-</div></li><li class="li1"><div class="de1"> System.out.println("String 2 comes before String 1
-</div></li><li class="li1"><div class="de1">lexicographically.");
-</div></li><li class="li1"><div class="de1"> else
-</div></li><li class="li1"><div class="de1"> System.out.println("String 1 and String 2 are
-</div></li><li class="li1"><div class="de1">lexicographically Equal.");
-</div></li><li class="li1"><div class="de1"> String string3 = "hello";
-</div></li><li class="li1"><div class="de1"> String string4 = "Hello";
-</div></li><li class="li1"><div class="de1"> int resultIgnoreCase =
-</div></li><li class="li1"><div class="de1">string3.compareToIgnoreCase(string4);
-</div></li><li class="li1"><div class="de1"> if (resultIgnoreCase &lt; 0)
-</div></li><li class="li1"><div class="de1"> System.out.println("String 3 comes before String 4
-</div></li><li class="li1"><div class="de1">lexicographically (case-insensitive).");
-</div></li><li class="li1"><div class="de1"> else if (resultIgnoreCase &gt; 0)
-</div></li><li class="li1"><div class="de1"> System.out.println("String 4 comes before String 3
-</div></li><li class="li1"><div class="de1">lexicographically (case-insensitive).");
-</div></li><li class="li1"><div class="de1"> else
-</div></li><li class="li1"><div class="de1"> System.out.println("String 3 and String 4 are
-</div></li><li class="li1"><div class="de1">lexicographically Equal (case-insensitive).");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//24. Write a program to concatenate a given string to the end of
-</div></li><li class="li1"><div class="de1">//another string.
-</div></li><li class="li1"><div class="de1">public class ConcatenateStrings {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> String string1 = "Hello, ";
-</div></li><li class="li1"><div class="de1"> String string2 = "World!";
-</div></li><li class="li1"><div class="de1"> String resultUsingPlus = string1 + string2;
-</div></li><li class="li1"><div class="de1"> String resultUsingConcat = string1.concat(string2);
-</div></li><li class="li1"><div class="de1"> System.out.println("Using + Operator: " + resultUsingPlus);
-</div></li><li class="li1"><div class="de1"> System.out.println("Using Concat Method: " +
-</div></li><li class="li1"><div class="de1">resultUsingConcat);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//25. Create an GUI application called Counter. Each time count
-</div></li><li class="li1"><div class="de1">//button is clicked, the counter value shall increase by 1.
-</div></li><li class="li1"><div class="de1">import java.awt.*;
-</div></li><li class="li1"><div class="de1">import java.awt.event.*;
-</div></li><li class="li1"><div class="de1">public class Counter {
-</div></li><li class="li1"><div class="de1"> public void createCounter() {
-</div></li><li class="li1"><div class="de1"> Frame frame = new Frame("Counter");
-</div></li><li class="li1"><div class="de1"> frame.setSize(300, 150);
-</div></li><li class="li1"><div class="de1"> frame.setLayout(new FlowLayout());
-</div></li><li class="li1"><div class="de1"> frame.setVisible(true);
-</div></li><li class="li1"><div class="de1"> Label label = new Label("Counter");
-</div></li><li class="li1"><div class="de1"> TextField textField = new TextField("0", 5);
-</div></li><li class="li1"><div class="de1"> textField.setEditable(false);
-</div></li><li class="li1"><div class="de1"> Button button = new Button("Count");
-</div></li><li class="li1"><div class="de1"> frame.add(label);
-</div></li><li class="li1"><div class="de1"> frame.add(textField);
-</div></li><li class="li1"><div class="de1"> frame.add(button);
-</div></li><li class="li1"><div class="de1"> button.addActionListener(new ActionListener() {
-</div></li><li class="li1"><div class="de1"> public void actionPerformed(ActionEvent e) {
-</div></li><li class="li1"><div class="de1"> int count = Integer.parseInt(textField.getText());
-</div></li><li class="li1"><div class="de1"> textField.setText(Integer.toString(++count));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> });
-</div></li><li class="li1"><div class="de1"> frame.addWindowListener(new WindowAdapter() {
-</div></li><li class="li1"><div class="de1"> public void windowClosing(WindowEvent e) {
-</div></li><li class="li1"><div class="de1"> System.exit(0);
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> });
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> Counter counter = new Counter();
-</div></li><li class="li1"><div class="de1"> counter.createCounter();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//26. Create a database with name ‘books_db’, should have a table
-</div></li><li class="li1"><div class="de1">//‘books’ with fields like ID, Name, Author and Price.
-</div></li><li class="li1"><div class="de1">import java.sql.*;
-</div></li><li class="li1"><div class="de1">public class BooksDatabase {
-</div></li><li class="li1"><div class="de1"> public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1"> try {
-</div></li><li class="li1"><div class="de1"> Connection connection =
-</div></li><li class="li1"><div class="de1">DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db",
-</div></li><li class="li1"><div class="de1">"root", "Rohit@123");
-</div></li><li class="li1"><div class="de1"> PreparedStatement createTable =
-</div></li><li class="li1"><div class="de1">connection.prepareStatement("CREATE TABLE books (ID int
-</div></li><li class="li1"><div class="de1">AUTO_INCREMENT PRIMARY KEY, Name varchar(30) NOT NULL, Author
-</div></li><li class="li1"><div class="de1">varchar(30) NOT NULL, Price int NOT NULL);");
-</div></li><li class="li1"><div class="de1"> createTable.executeUpdate();
-</div></li><li class="li1"><div class="de1"> PreparedStatement insertRecord1 =
-</div></li><li class="li1"><div class="de1">connection.prepareStatement("INSERT INTO books (Name, Author,
-</div></li><li class="li1"><div class="de1">Price) VALUES ('Book1', 'Author1', 500);");
-</div></li><li class="li1"><div class="de1"> insertRecord1.executeUpdate();
-</div></li><li class="li1"><div class="de1"> PreparedStatement insertRecord2 =
-</div></li><li class="li1"><div class="de1">connection.prepareStatement("INSERT INTO books (Name, Author,
-</div></li><li class="li1"><div class="de1">Price) VALUES (?, ?, ?);");
-</div></li><li class="li1"><div class="de1"> insertRecord2.setString(1, "Book2");
-</div></li><li class="li1"><div class="de1"> insertRecord2.setString(2, "Author2");
-</div></li><li class="li1"><div class="de1"> insertRecord2.setInt(3, 300);
-</div></li><li class="li1"><div class="de1"> insertRecord2.executeUpdate();
-</div></li><li class="li1"><div class="de1"> Statement insertRecord3 = connection.createStatement();
-</div></li><li class="li1"><div class="de1"> insertRecord3.executeUpdate("INSERT INTO books (Name,
-</div></li><li class="li1"><div class="de1">Author, Price) VALUES ('Book3', 'Author3', 250);");
-</div></li><li class="li1"><div class="de1"> insertRecord3.executeUpdate("INSERT INTO books (Name,
-</div></li><li class="li1"><div class="de1">Author, Price) VALUES ('Book4', 'Author4', 700);");
-</div></li><li class="li1"><div class="de1"> System.out.println("Before deleting and updating a
-</div></li><li class="li1"><div class="de1">record:");
-</div></li><li class="li1"><div class="de1"> PreparedStatement selectRecords1 =
-</div></li><li class="li1"><div class="de1">connection.prepareStatement("SELECT * FROM books");
-</div></li><li class="li1"><div class="de1"> ResultSet booksRecords1 =
-</div></li><li class="li1"><div class="de1">selectRecords1.executeQuery();
-</div></li><li class="li1"><div class="de1"> System.out.println("ID\tName\tAuthor\tPrice");
-</div></li><li class="li1"><div class="de1"> while (booksRecords1.next()) {
-</div></li><li class="li1"><div class="de1"> System.out.println(booksRecords1.getInt("ID") +
-</div></li><li class="li1"><div class="de1">"\t" + booksRecords1.getString("Name") + "\t" +
-</div></li><li class="li1"><div class="de1">booksRecords1.getString("Author") + "\t" +
-</div></li><li class="li1"><div class="de1">booksRecords1.getInt("Price"));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> PreparedStatement deleteRecord =
-</div></li><li class="li1"><div class="de1">connection.prepareStatement("DELETE FROM books WHERE ID = 3;");
-</div></li><li class="li1"><div class="de1"> deleteRecord.executeUpdate();
-</div></li><li class="li1"><div class="de1"> PreparedStatement updateRecord =
-</div></li><li class="li1"><div class="de1">connection.prepareStatement("UPDATE books SET Name = 'Book', Author
-</div></li><li class="li1"><div class="de1">= 'Author', Price = 0 WHERE ID = 1;");
-</div></li><li class="li1"><div class="de1"> updateRecord.executeUpdate();
-</div></li><li class="li1"><div class="de1"> System.out.println("After deleting and updating a
-</div></li><li class="li1"><div class="de1">record:");
-</div></li><li class="li1"><div class="de1"> PreparedStatement selectRecords2 =
-</div></li><li class="li1"><div class="de1">connection.prepareStatement("SELECT * FROM books;");
-</div></li><li class="li1"><div class="de1"> ResultSet booksRecords2 =
-</div></li><li class="li1"><div class="de1">selectRecords2.executeQuery();
-</div></li><li class="li1"><div class="de1"> System.out.println("ID\tName\tAuthor\tPrice");
-</div></li><li class="li1"><div class="de1"> while (booksRecords2.next()) {
-</div></li><li class="li1"><div class="de1"> System.out.println(booksRecords2.getInt(1) + "\t" +
-</div></li><li class="li1"><div class="de1">booksRecords2.getString(2) + "\t" + booksRecords2.getString(3) +
-</div></li><li class="li1"><div class="de1">"\t" + booksRecords2.getInt(4));
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> catch (SQLException e) {
-</div></li><li class="li1"><div class="de1"> e.printStackTrace();
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//27. Create a webpage using servlet, that takes two numbers as input
-</div></li><li class="li1"><div class="de1">//from the user and displays which number is greater.
-</div></li><li class="li1"><div class="de1">//Greater.html
-</div></li><li class="li1"><div class="de1">&lt;!DOCTYPE html&gt;
-</div></li><li class="li1"><div class="de1">&lt;html lang="en"&gt;
-</div></li><li class="li1"><div class="de1">&lt;head&gt;
-</div></li><li class="li1"><div class="de1"> &lt;meta charset="UTF-8"&gt;
-</div></li><li class="li1"><div class="de1"> &lt;title&gt;Greater&lt;/title&gt;
-</div></li><li class="li1"><div class="de1">&lt;/head&gt;
-</div></li><li class="li1"><div class="de1">&lt;body&gt;
-</div></li><li class="li1"><div class="de1"> &lt;form action="Greater"&gt;
-</div></li><li class="li1"><div class="de1"> &lt;h2&gt;Find Greater Number&lt;/h2&gt;
-</div></li><li class="li1"><div class="de1"> &lt;label for="firstNumber"&gt;First Number: &lt;/label&gt;
-</div></li><li class="li1"><div class="de1"> &lt;input type="number" name="firstNumber" id="firstNumber"
-</div></li><li class="li1"><div class="de1">required&gt;
-</div></li><li class="li1"><div class="de1"> &lt;label for="secondNumber"&gt;Second Number: &lt;/label&gt;
-</div></li><li class="li1"><div class="de1"> &lt;input type="number" name="secondNumber" id="secondNumber"
-</div></li><li class="li1"><div class="de1">required&gt;
-</div></li><li class="li1"><div class="de1"> &lt;input type="submit" value="Find Greater"&gt;
-</div></li><li class="li1"><div class="de1"> &lt;/form&gt;
-</div></li><li class="li1"><div class="de1">&lt;/body&gt;
-</div></li><li class="li1"><div class="de1">&lt;/html&gt;
-</div></li><li class="li1"><div class="de1">//GreaterServlet.java
-</div></li><li class="li1"><div class="de1">package com.servletsjsps;
-</div></li><li class="li1"><div class="de1">import jakarta.servlet.http.HttpServlet;
-</div></li><li class="li1"><div class="de1">import jakarta.servlet.http.HttpServletRequest;
-</div></li><li class="li1"><div class="de1">import jakarta.servlet.http.HttpServletResponse;
-</div></li><li class="li1"><div class="de1">import java.io.IOException;
-</div></li><li class="li1"><div class="de1">import java.io.PrintWriter;
-</div></li><li class="li1"><div class="de1">public class GreaterServlet extends HttpServlet {
-</div></li><li class="li1"><div class="de1"> public void service(HttpServletRequest request,
-</div></li><li class="li1"><div class="de1">HttpServletResponse response) throws IOException {
-</div></li><li class="li1"><div class="de1"> int firstNumber =
-</div></li><li class="li1"><div class="de1">Integer.parseInt(request.getParameter("firstNumber"));
-</div></li><li class="li1"><div class="de1"> int secondNumber =
-</div></li><li class="li1"><div class="de1">Integer.parseInt(request.getParameter("secondNumber"));
-</div></li><li class="li1"><div class="de1"> PrintWriter printWriter = response.getWriter();
-</div></li><li class="li1"><div class="de1"> if (firstNumber &gt; secondNumber)
-</div></li><li class="li1"><div class="de1"> printWriter.println(firstNumber + " is greater than " +
-</div></li><li class="li1"><div class="de1">secondNumber + ".");
-</div></li><li class="li1"><div class="de1"> else
-</div></li><li class="li1"><div class="de1"> printWriter.println(secondNumber + " is greater than "
-</div></li><li class="li1"><div class="de1">+ firstNumber + ".");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">//web.xml
-</div></li><li class="li1"><div class="de1">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-</div></li><li class="li1"><div class="de1">&lt;web-app&gt;
-</div></li><li class="li1"><div class="de1"> &lt;servlet&gt;
-</div></li><li class="li1"><div class="de1"> &lt;servlet-name&gt;Greater&lt;/servlet-name&gt;
-</div></li><li class="li1"><div class="de1"> &lt;servlet-class&gt;com.servletsjsps.GreaterServlet&lt;/servletclass&gt;
-</div></li><li class="li1"><div class="de1"> &lt;/servlet&gt;
-</div></li><li class="li1"><div class="de1"> &lt;servlet-mapping&gt;
-</div></li><li class="li1"><div class="de1"> &lt;servlet-name&gt;Greater&lt;/servlet-name&gt;
-</div></li><li class="li1"><div class="de1"> &lt;url-pattern&gt;/Greater&lt;/url-pattern&gt;
-</div></li><li class="li1"><div class="de1"> &lt;/servlet-mapping&gt;
-</div></li><li class="li1"><div class="de1">&lt;/web-app&gt;
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//28. Create a webpage using JSP, that takes a number as input from
-</div></li><li class="li1"><div class="de1">//the user and displays its factorial.
-</div></li><li class="li1"><div class="de1">//Factorial.html
-</div></li><li class="li1"><div class="de1">&lt;!DOCTYPE html&gt;
-</div></li><li class="li1"><div class="de1">&lt;html lang="en"&gt;
-</div></li><li class="li1"><div class="de1">&lt;head&gt;
-</div></li><li class="li1"><div class="de1"> &lt;meta charset="UTF-8"&gt;
-</div></li><li class="li1"><div class="de1"> &lt;title&gt;Factorial&lt;/title&gt;
-</div></li><li class="li1"><div class="de1">&lt;/head&gt;
-</div></li><li class="li1"><div class="de1">&lt;body&gt;
-</div></li><li class="li1"><div class="de1"> &lt;form action="Factorial.jsp" method="post"&gt;
-</div></li><li class="li1"><div class="de1"> &lt;h2&gt;Factorial of a Given Number&lt;/h2&gt;
-</div></li><li class="li1"><div class="de1"> &lt;label for="number"&gt;Enter a number: &lt;/label&gt;
-</div></li><li class="li1"><div class="de1"> &lt;input type="number" name="number" id="number" required&gt;
-</div></li><li class="li1"><div class="de1"> &lt;input type="submit" value="Calculate Factorial"&gt;
-</div></li><li class="li1"><div class="de1"> &lt;/form&gt;
-</div></li><li class="li1"><div class="de1">&lt;/body&gt;
-</div></li><li class="li1"><div class="de1">&lt;/html&gt;
-</div></li><li class="li1"><div class="de1">//Factorial.jsp
-</div></li><li class="li1"><div class="de1">&lt;%@ page import="java.io.PrintWriter" %&gt;
-</div></li><li class="li1"><div class="de1">&lt;%@ page contentType="text/html; charset=UTF-8" language="java" %&gt;
-</div></li><li class="li1"><div class="de1">&lt;!DOCTYPE html&gt;
-</div></li><li class="li1"><div class="de1">&lt;html lang="en"&gt;
-</div></li><li class="li1"><div class="de1">&lt;head&gt;
-</div></li><li class="li1"><div class="de1"> &lt;meta charset="UTF-8"&gt;
-</div></li><li class="li1"><div class="de1"> &lt;title&gt;Factorial&lt;/title&gt;
-</div></li><li class="li1"><div class="de1">&lt;/head&gt;
-</div></li><li class="li1"><div class="de1">&lt;body&gt;
-</div></li><li class="li1"><div class="de1"> &lt;%
-</div></li><li class="li1"><div class="de1"> int number =
-</div></li><li class="li1"><div class="de1">Integer.parseInt(request.getParameter("number"));
-</div></li><li class="li1"><div class="de1"> long factorial = 1;
-</div></li><li class="li1"><div class="de1"> PrintWriter printWriter = response.getWriter();
-</div></li><li class="li1"><div class="de1"> if (number &lt; 0)
-</div></li><li class="li1"><div class="de1"> printWriter.println("Factorial is defined only for nonnegative integers.");
-</div></li><li class="li1"><div class="de1"> else {
-</div></li><li class="li1"><div class="de1"> for (int i = 1; i &lt;= number; i++) {
-</div></li><li class="li1"><div class="de1"> factorial *= i;
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> printWriter.println("Factorial of " + number + " is " +
-</div></li><li class="li1"><div class="de1">factorial + ".");
-</div></li><li class="li1"><div class="de1"> }
-</div></li><li class="li1"><div class="de1"> %&gt;
-</div></li><li class="li1"><div class="de1">&lt;/body&gt;
-</div></li><li class="li1"><div class="de1">&lt;/html&gt;
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//collection 1
-</div></li><li class="li1"><div class="de1">import java.util.ArrayList;
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">public class RemoveThirdElement {
-</div></li><li class="li1"><div class="de1">    public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        ArrayList&lt;String&gt; arrayList = new ArrayList&lt;&gt;();
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        arrayList.add("Element 1");
-</div></li><li class="li1"><div class="de1">        arrayList.add("Element 2");
-</div></li><li class="li1"><div class="de1">        arrayList.add("Element 3");
-</div></li><li class="li1"><div class="de1">        arrayList.add("Element 4");
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        System.out.println("Original ArrayList: " + arrayList);
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        if (arrayList.size() &gt;= 3) {
-</div></li><li class="li1"><div class="de1">            arrayList.remove(2);
-</div></li><li class="li1"><div class="de1">            System.out.println("ArrayList after removing the third element: " + arrayList);
-</div></li><li class="li1"><div class="de1">        } else {
-</div></li><li class="li1"><div class="de1">            System.out.println("ArrayList does not have a third element to remove.");
-</div></li><li class="li1"><div class="de1">        }
-</div></li><li class="li1"><div class="de1">    }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//collection2
-</div></li><li class="li1"><div class="de1">import java.util.LinkedList;
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">public class InsertElement {
-</div></li><li class="li1"><div class="de1">    public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        LinkedList&lt;String&gt; linkedList = new LinkedList&lt;&gt;();
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        linkedList.add("Element 1");
-</div></li><li class="li1"><div class="de1">        linkedList.add("Element 3");
-</div></li><li class="li1"><div class="de1">        linkedList.add("Element 4");
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        System.out.println("Original LinkedList: " + linkedList);
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        if (linkedList.size() &gt;= 2) {
-</div></li><li class="li1"><div class="de1">            linkedList.add(1, "Element 2");
-</div></li><li class="li1"><div class="de1">            System.out.println("LinkedList after inserting at the second location: " + linkedList);
-</div></li><li class="li1"><div class="de1">        } else {
-</div></li><li class="li1"><div class="de1">            System.out.println("LinkedList does not have a second location to insert the element.");
-</div></li><li class="li1"><div class="de1">        }
-</div></li><li class="li1"><div class="de1">    }
-</div></li><li class="li1"><div class="de1">}
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">//collection 3
-</div></li><li class="li1"><div class="de1">import java.util.HashSet;
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">public class AppendToHashSet {
-</div></li><li class="li1"><div class="de1">    public static void main(String[] args) {
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        HashSet&lt;String&gt; hashSet = new HashSet&lt;&gt;();
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        hashSet.add("Element 1");
-</div></li><li class="li1"><div class="de1">        hashSet.add("Element 2");
-</div></li><li class="li1"><div class="de1">        hashSet.add("Element 3");
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        System.out.println("Original HashSet: " + hashSet);
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        String newElement = "Appended Element";
-</div></li><li class="li1"><div class="de1">        hashSet.add(newElement);
-</div></li><li class="li1"><div class="de1">&nbsp;</div></li><li class="li1"><div class="de1">        System.out.println("HashSet after appending element: " + hashSet);
-</div></li><li class="li1"><div class="de1">    }
-</div></li><li class="li1"><div class="de1">}</div></li></ol>        </div>
-    </div>
-
-    
-
-        
-<!-- 0-x2xy94pJ -->
-<div style="padding-bottom:10px; padding-top:10px;">
-<div style="color: #999; font-size: 12px; text-align: center;">Advertisement</div>
-<div class="adsbyvli" style="width:970px; height:250px" data-ad-slot="vi_1282567605"></div> <script>(vitag.Init = window.vitag.Init || []).push(function () { viAPItag.display("vi_1282567605") })</script>
-</div>
-
-    
-        
-<div class="comments">
-
-    
-            
-            <div class="page">
-                <div class="content__title -no-border">
-                    Add Comment                </div>
-
-                <div class="content__text -no-padding">
-                    <div class="notice -post-view">
-                        Please, <a href="https://pastebin.com/login?return_url=%2FqLBTgqCA%23add_comment"><b><u>Sign In</u></b></a> to add comment                    </div>
-                </div>
-            </div>
-
-            </div>
-        
-</div>            <div style="clear: both;"></div>
-
-                        
-<!-- 0-x2xy94pJ -->
-<div style="padding-bottom:20px; padding-top:20px;">
-<div style="color: #999; font-size: 12px; text-align: center;">Advertisement</div>
-<div class="adsbyvli" data-ad-slot="vi_1282577474" style="width: 970px; height: 90px"></div><script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_1282577474")})</script>
-</div>
-        </div>
-
-        <div class="sidebar h_1024">
-            
-
-
-
-                
-    <div class="sidebar__title">
-        <a href="https://pastebin.com/archive">Public Pastes</a>
-    </div>
-    <ul class="sidebar__menu">
-
-                    <li>
-                <a href="https://pastebin.com/JSt70mvK">BTC Wallet Credentials have been reset</a>
-                <div class="details">
-                                            GetText |
-                    
-                    13 min ago
-                    | 0.27 KB                </div>
-            </li>
-                    <li>
-                <a href="https://pastebin.com/5RBrVZCf">BTC Wallet Credentials have been reset</a>
-                <div class="details">
-                                            GetText |
-                    
-                    24 min ago
-                    | 0.26 KB                </div>
-            </li>
-                    <li>
-                <a href="https://pastebin.com/Q1RgnX7Q">mas sobre interfaces</a>
-                <div class="details">
-                                            Java |
-                    
-                    1 hour ago
-                    | 3.29 KB                </div>
-            </li>
-                    <li>
-                <a href="https://pastebin.com/jitia0H5">Ejemplo de interaccion entre clases</a>
-                <div class="details">
-                                            Java |
-                    
-                    1 hour ago
-                    | 1.26 KB                </div>
-            </li>
-                    <li>
-                <a href="https://pastebin.com/fhEKCHNi">Day 14 try catch finally</a>
-                <div class="details">
-                                            Java |
-                    
-                    1 hour ago
-                    | 1.87 KB                </div>
-            </li>
-                    <li>
-                <a href="https://pastebin.com/imJfUZ6y">Agon Light2 Load Screen</a>
-                <div class="details">
-                                            ZXBasic |
-                    
-                    1 hour ago
-                    | 4.06 KB                </div>
-            </li>
-                    <li>
-                <a href="https://pastebin.com/aSiti7Us">Enigma</a>
-                <div class="details">
-                                            C++ |
-                    
-                    1 hour ago
-                    | 1.52 KB                </div>
-            </li>
-                    <li>
-                <a href="https://pastebin.com/16mkQy58">2023-11-23_stats.json</a>
-                <div class="details">
-                                            JSON |
-                    
-                    1 hour ago
-                    | 5.01 KB                </div>
-            </li>
-        
-    </ul>
-            
-
-    <div class="sidebar__sticky -on">
-                
-<!-- 0-x2xy94pJ -->
-<div style="padding-bottom:10px; padding-top:20px;">
-<div style="color: #999; font-size: 12px; text-align: center;">Advertisement</div>
-<div class="adsbyvli" data-ad-slot="vi_1282578983" style="width: 300px; height: 600px"></div><script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_1282578983")})</script>
-</div>
-    </div>
-        </div>
-    </div>
-</div>
-
-
-    
-<div class="top-footer">
-    <a class="icon-link -size-24-24 -chrome" href="https://pastebin.com/tools#chrome" title="Google Chrome Extension"></a>
-    <a class="icon-link -size-24-24 -firefox" href="https://pastebin.com/tools#firefox" title="Firefox Extension"></a>
-    <a class="icon-link -size-24-24 -iphone" href="https://pastebin.com/tools#iphone" title="iPhone/iPad Application"></a>
-    <a class="icon-link -size-24-24 -windows" href="https://pastebin.com/tools#windows" title="Windows Desktop Application"></a>
-    <a class="icon-link -size-24-24 -android" href="https://pastebin.com/tools#android" title="Android Application"></a>
-    <a class="icon-link -size-24-24 -macos" href="https://pastebin.com/tools#macos" title="MacOS X Widget"></a>
-    <a class="icon-link -size-24-24 -opera" href="https://pastebin.com/tools#opera" title="Opera Extension"></a>
-    <a class="icon-link -size-24-24 -unix" href="https://pastebin.com/tools#pastebincl" title="Linux Application"></a>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <div class="footer__container">
-
-            <div class="footer__left">
-                <a href="https://pastebin.com/">create new paste</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                                <a href="https://pastebin.com/languages">syntax languages</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/archive">archive</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/faq">faq</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/tools">tools</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/night_mode">night mode</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/doc_api">api</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/doc_scraping_api">scraping api</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/news">news</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/pro" class="pro">pro</a>
-
-                <br>
-                <a href="https://pastebin.com/doc_privacy_statement">privacy statement</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/doc_cookies_policy">cookies policy</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/doc_terms_of_service">terms of service</a><span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/doc_security_disclosure">security disclosure</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/dmca">dmca</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/report-abuse">report abuse</a> <span class="footer__devider">&nbsp;/&nbsp;</span>
-                <a href="https://pastebin.com/contact">contact</a>
-
-                <br>
-
-                                
-                <br>
-
-                
-<span class="footer__bottom h_800">
-    By using Pastebin.com you agree to our <a href="https://pastebin.com/doc_cookies_policy">cookies policy</a> to enhance your experience.
-    <br>
-    Site design &amp; logo © 2023 Pastebin</span>
-            </div>
-
-            <div class="footer__right h_1024">
-                                    <a class="icon-link -size-40-40 -facebook-circle" href="https://facebook.com/pastebin" rel="nofollow" title="Like us on Facebook" target="_blank"></a>
-                    <a class="icon-link -size-40-40 -twitter-circle" href="https://twitter.com/pastebin" rel="nofollow" title="Follow us on Twitter" target="_blank"></a>
-                            </div>
-
-        </div>
-    </div>
-</footer>
-    
-
-
-    
-<div class="popup-container" style="bottom: 21px;">
-
-                <div class="popup-box -cookies" data-name="l2c_1">
-            We use cookies for various purposes including analytics. By continuing to use Pastebin, you agree to our use of cookies as described in the <a href="https://pastebin.com/doc_cookies_policy">Cookies Policy</a>.            &nbsp;<span class="cookie-button js-close-cookies">OK, I Understand</span>
-        </div>
-    
-                <div class="popup-box -pro" data-name="l2c_2_pg">
-            <div class="pro-promo-img">
-                <a href="https://pastebin.com/signup" aria-label="Sign Up">
-                    <img src="./java_files/hello.webp" alt="">
-                </a>
-            </div>
-            <div class="pro-promo-text">
-                Not a member of Pastebin yet?<br>
-                <a href="https://pastebin.com/signup"><b>Sign Up</b></a>, it unlocks many cool features!            </div>
-            <div class="close js-close-pro-guest" title="Close Me">&nbsp;</div>
-        </div>
-    
-    
-    
-</div>
-    
-
-<span class="cd-top"></span>
-
-<script src="./java_files/jquery.min.js.download"></script>
-<script src="./java_files/yii.js.download"></script>
-<script src="./java_files/bootstrap-tagsinput.js.download"></script>
-<script>
-    const POST_EXPIRATION_NEVER = 'N';
-    const POST_EXPIRATION_BURN = 'B';
-    const POST_STATUS_PUBLIC = '0';
-    const POST_STATUS_UNLISTED = '1';
-</script>
-<script src="./java_files/vendors.bundle.js.download"></script>
-<script src="./java_files/app.bundle.js.download"></script>
-
-
-
-<div id="lightboxOverlay" tabindex="-1" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" tabindex="-1" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt=""><div class="lb-nav"><a class="lb-prev" aria-label="Previous image" href="https://pastebin.com/qLBTgqCA"></a><a class="lb-next" aria-label="Next image" href="https://pastebin.com/qLBTgqCA"></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>
+<body>
+<form action="Greater">
+<h2>Find Greater Number</h2>
+<label for="firstNumber">First Number: </label>
+<input type="number" name="firstNumber" id="firstNumber"
+required>
+<label for="secondNumber">Second Number: </label>
+<input type="number" name="secondNumber" id="secondNumber"
+required>
+<input type="submit" value="Find Greater">
+</form>
+</body>
+</html>
+//GreaterServlet.java
+package com.servletsjsps;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+public class GreaterServlet extends HttpServlet {
+public void service(HttpServletRequest request,
+HttpServletResponse response) throws IOException {
+int firstNumber =
+Integer.parseInt(request.getParameter("firstNumber"));
+int secondNumber =
+Integer.parseInt(request.getParameter("secondNumber"));
+PrintWriter printWriter = response.getWriter();
+if (firstNumber > secondNumber)
+printWriter.println(firstNumber + " is greater than " +
+secondNumber + ".");
+else
+printWriter.println(secondNumber + " is greater than "
++ firstNumber + ".");
+}
+}
+//web.xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app>
+<servlet>
+<servlet-name>Greater</servlet-name>
+<servlet-class>com.servletsjsps.GreaterServlet</servletclass>
+</servlet>
+<servlet-mapping>
+<servlet-name>Greater</servlet-name>
+<url-pattern>/Greater</url-pattern>
+</servlet-mapping>
+</web-app>
+ 
+ 
+//28. Create a webpage using JSP, that takes a number as input from
+//the user and displays its factorial.
+//Factorial.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Factorial</title>
+</head>
+<body>
+<form action="Factorial.jsp" method="post">
+<h2>Factorial of a Given Number</h2>
+<label for="number">Enter a number: </label>
+<input type="number" name="number" id="number" required>
+<input type="submit" value="Calculate Factorial">
+</form>
+</body>
+</html>
+//Factorial.jsp
+<%@ page import="java.io.PrintWriter" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Factorial</title>
+</head>
+<body>
+<%
+int number =
+Integer.parseInt(request.getParameter("number"));
+long factorial = 1;
+PrintWriter printWriter = response.getWriter();
+if (number < 0)
+printWriter.println("Factorial is defined only for nonnegative integers.");
+else {
+for (int i = 1; i <= number; i++) {
+factorial *= i;
+}
+printWriter.println("Factorial of " + number + " is " +
+factorial + ".");
+}
+%>
+</body>
+</html>
+ 
+ 
+//collection 1
+import java.util.ArrayList;
+ 
+public class RemoveThirdElement {
+public static void main(String[] args) {
+ 
+ArrayList<String> arrayList = new ArrayList<>();
+ 
+arrayList.add("Element 1");
+arrayList.add("Element 2");
+arrayList.add("Element 3");
+arrayList.add("Element 4");
+ 
+System.out.println("Original ArrayList: " + arrayList);
+ 
+if (arrayList.size() >= 3) {
+arrayList.remove(2);
+System.out.println("ArrayList after removing the third element: " + arrayList);
+} else {
+System.out.println("ArrayList does not have a third element to remove.");
+}
+}
+}
+ 
+//collection2
+import java.util.LinkedList;
+ 
+public class InsertElement {
+public static void main(String[] args) {
+ 
+LinkedList<String> linkedList = new LinkedList<>();
+ 
+linkedList.add("Element 1");
+linkedList.add("Element 3");
+linkedList.add("Element 4");
+ 
+ 
+System.out.println("Original LinkedList: " + linkedList);
+ 
+ 
+if (linkedList.size() >= 2) {
+linkedList.add(1, "Element 2");
+System.out.println("LinkedList after inserting at the second location: " + linkedList);
+} else {
+System.out.println("LinkedList does not have a second location to insert the element.");
+}
+}
+}
+ 
+ 
+//collection 3
+import java.util.HashSet;
+ 
+public class AppendToHashSet {
+public static void main(String[] args) {
+ 
+HashSet<String> hashSet = new HashSet<>();
+ 
+ 
+hashSet.add("Element 1");
+hashSet.add("Element 2");
+hashSet.add("Element 3");
+ 
+System.out.println("Original HashSet: " + hashSet);
+ 
+String newElement = "Appended Element";
+hashSet.add(newElement);
+ 
+System.out.println("HashSet after appending element: " + hashSet);
+}
+}
